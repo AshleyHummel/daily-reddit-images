@@ -50,7 +50,7 @@ def send_mail(email, password, sender_email, receiver_email, msg):
  
 send_mail(email, password, sender_email, receiver_email, msg)
  
-# Access top 5 "hot" subreddit posts
+# Access top 5 "hot" subreddit posts using Reddit app
 reddit = praw.Reddit(
 client_id=os.environ.get('CLIENT_ID'),
 client_secret=os.environ.get('CLIENT_SECRET'),
