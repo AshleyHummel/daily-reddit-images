@@ -61,6 +61,11 @@ for submission in reddit.subreddit(subreddit).hot(limit=None):
       full_path_name = path + f"{subreddit}-{submission.id}.png"
       subtype = "png"
       print("png was found!")
+    elif "gifv" in submission.url :
+      full_path_name = path + f"{subreddit}-{submission.id}.gifv"
+      subtype = "gifv"
+      print("gif was found!")
+      gif_found = True
     elif "gif" in submission.url :
       full_path_name = path + f"{subreddit}-{submission.id}.gif"
       subtype = "gif"
@@ -73,21 +78,21 @@ for submission in reddit.subreddit(subreddit).hot(limit=None):
     output = open(full_path_name, "wb")
     output.write(requests.get(submission.url).content) # save image to folder
     msg_image = MIMEImage(open(full_path_name, 'rb').read(), _subtype=subtype)
-    msg.attach(msg_image) # attach image to email
+    if "gif" not in submission.url :
+      msg.attach(msg_image) # attach image to email
     output.close()
     
     email = "\nImage link: " + submission.url
     msg.attach(MIMEText(email, "plain"))
     image_count += 1
-    if image_count >= 5 or gif_found == True: # break loop when 5 images or 1 gif found
+    if image_count >= 5 : # break loop when 5 images are found
       break
 
-# if gif was found, user is alerted that post number was limited (to reduce size of email)
+# if a gif was found, the user is alerted that it is not shown in the email
 if gif_found == True:
-  email = "\n\nA gif was found and saved from r/" + subreddit + ". Only 1 post was sent to reduce email size. Sorry for the inconvenience!"
-  msg.attach(MIMEText(email, "plain"))
-
-email = "\n\nYour images have been saved to " + os.environ.get('PATH_NAME') + ". Enjoy!"
+  email = "\n\nA gif was found and saved from r/" + subreddit + ". To prevent exceeding Google's message size limits, it is not displayed here but it has been saved to " + os.environ.get('PATH_NAME') + " along with your other images/gifs. Enjoy!"
+else :
+  email = "\n\nYour images have been saved to " + os.environ.get('PATH_NAME') + ". Enjoy!"
 msg.attach(MIMEText(email, "plain"))
 
 # use SMTP to access server and send email
