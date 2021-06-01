@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.1] - 2021-05-31
+* Gifs are saved to workspace folder but no longer displayed in email (to reduce message size)
+* Gifs and gifv's are now differentiated and saved properly
+
 ## [2.0] - 2021-05-31
 * Sends email to user (same as previous versions) and displays images of the top 5 "hot" posts + links to the images
 * Sends and saves gifs properly
