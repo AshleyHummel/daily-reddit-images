@@ -1,5 +1,6 @@
 # daily-reddit-images
-> Saves and emails images/gifs from the top 5 "hot" posts in a user-chosen subreddit.
+Saves and emails images/gifs from the top 5 "hot" posts in a user-chosen subreddit.
+> (The "daily" part of this project is yet to be implemented)
 
 ## General Information
 - Quickly collects and saves images of popular art, photography, memes, wallpapers, etc. from Reddit
@@ -25,6 +26,8 @@
 
 
 ## Room for Improvement
+- Provide an HTML format of receiving the images through email
+- Schedule script to run daily
 
 ## License
 This project is open source and available under the MIT License.
