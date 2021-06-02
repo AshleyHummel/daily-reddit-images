@@ -14,7 +14,8 @@
 
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+<img src="console_screenshot.png" width="400"> 
+<img src="email_screenshot.png" width="400">
 
 
 ## Setup
